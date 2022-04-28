@@ -12,12 +12,12 @@ int main(int argc, char* argv[]){
         printf("U need enter the 3 file name. \n");
         exit(-1);
 }
-umask(S_IWGRP | S_IRGRP | S_IWOTH | S_IROTH);  //umask(177);
+umask(S_IWGRP | S_IRGRP | S_IWOTH | S_IROTH);  //umask(077);
 int fd1=open(argv[1],O_CREAT | O_WRONLY | O_TRUNC,RWRWRW);
 char buf1[]="Only owner can read and write this file.";
 write(fd1,buf1,sizeof(buf1)-1);
 
-umask(S_IROTH | S_IWOTH);   //umask(116);
+umask(S_IROTH | S_IWOTH);   //umask(007);
 int fd2=open(argv[2],O_CREAT | O_WRONLY | O_TRUNC,RWRWRW);
 char buf2[]="Groups and owner can read and write this file.";
 write(fd2,buf2,sizeof(buf2)-1);
